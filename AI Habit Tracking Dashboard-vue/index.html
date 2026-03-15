@@ -2,87 +2,115 @@
 <html lang="">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="project.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI习惯追踪仪表盘</title>
   </head>
   <body>
-    <section>
+    <div class="container">
+    <div class="head1">
+      <div>
      <header>
-      <h1>习惯追踪</h1>
-      <p>记录和管理您的习惯，实现更高效的生活</p>
+      <h1 class="title1">🌱习惯追踪</h1>
+      <p class="text1">记录和管理您的习惯，实现更高效的生活</p>
     </header>
+    </div>
+    <div class="theme">
     <button id="themeToggle">
-      <span class="icon">☀️</span>
-    </button>
-    <button id="ai" href="https://www.baidu.com">🤖AI建议</button>
-    </section>
+      <span class="icon">🌙</span>
+    <button   id="ai">🤖AI建议</button>
+    </div>
+    </div>
 
     <section id="stats">
-      <div>
-        <h2>📅总习惯</h2>
-          <span>已经添加0个习惯</span>
+      <div class="stats-item">
+        <h2 class="icon">📅</h2>
+        <div class="stats-content">
+          <H3>0</H3>
+          <span>总习惯</span>
+        </div>
       </div>
-          <div>
-            <h2>✅今日完成</h2>
-             <span>完成0个</span>
-          </div>
-            <div>
-                <h2>🔥连胜天数</h2>
-                  <span>已连胜0天</span>        
+          <div class="stats-item">
+            <h2 class="icon">✅</h2>
+            <div class="stats-content">
+              <H3>0</H3>
+              <span>完成量</span>
             </div>
-               <div>
-                  <h2>📊完成率</h2>
-                    <span>0%</span>
-                </div>
+          </div>
+      
+            <div class="stats-item">
+              <h2 class="icon">🔥</h2>
+              <div class="stats-content"  >
+                <H3>0</H3>
+                <span>当前连胜</span>        
+              </div>
+            </div>
+      <div class="stats-item"> 
+        <h2 class="icon">📊</h2>
+        <div class="stats-content">
+          <H3>0</H3>
+          <span>完成率</span>
+        </div>
+        </div>
     </section>
 <!-- 主内容区域 -->
 
 <main>
- <section>
-   <header>➕添加习惯</header>
-  <form>
-   <label for="iterm1">习惯名称:</label>
-    <input id="iterm1"placeholder="例如:每天阅读30分钟">
-    <label for="iterm2">习惯描述:</label>
-    <select id="iterm2">
+ <section class="add-habit">
+  <div class="add-habit-content1">
+  <header>➕添加习惯</header> 
+</div>
+<form class="add-habit-form" action="" method="post">
+  <div class="form-item">    
+  <label for="iterm1">习惯名称:</label>
+      <input id="iterm1"placeholder="例如:每天阅读30分钟" required>
+ </div>
+  <div class="form-item">
+      <label for="iterm2">习惯描述:</label>
+      <select id="iterm2" required>
       <option value="health">健康</option>
       <option value="study">学习</option>
       <option value="social">社交</option>
-    </select>
-   <label for="iterm3">频率</label>
-   <input list="select1" id="iterm3">
-    <datalist id="select1">
-      <option value="everyday"></option>
-      <option value="everyweek"></option>
-  </datalist>
-  <button type="submit">添加习惯</button>
+      </select>
+  </div>
+  <div class="form-item">
+      <label for="iterm3">频率</label>
+      <select id="iterm3" required>
+      <option value="everyday">每天</option>
+      <option value="everyweek">每周</option>
+     </select>
+  </div>
+  <div class="form-btn">
+  <button type="submit" id="addHabitBtn">添加习惯</button>
+</div>  
   </form>
  </section>
 
- <section>
- <div>
+ <section class="my-habit">
+ <div class="my-habit-content1">
   <h3>🗒️我的习惯</h3>
+  <div  class="my-habit-btn">
   <button id="filterAll" data-filter="all">所有习惯</button>
   <button id="filterHealth" data-filter="health">健康</button>
   <button id="filterStudy" data-filter="study">学习</button>
   <button id="filterSocial" data-filter="social">社交</button>
   </div>
-  <!-- 显示已添加习惯的列表 -->
-<div>
+</div>
+<div id="my-habit-list">
 <!--由js动态生成习惯列表-->
 </div>
-<div>
+<div class="my-habit-content2">
   <h6>🌳</h6>
-  <p>还没有习惯</p>
-  <p>请添加一些习惯开始，开始你的成长之旅吧！</p>
+  <p class="text2">还没有习惯</p>
+  <p class="text3">请添加一些习惯开始，开始你的成长之旅吧！</p>
 </div>
  </section>
 </main>
-  <section>
-<header>📊数据可视化</header>
-<div>
-  <H1>七天完成热力图</H1>
+  <section id="visualization">
+<header STYLE="font-size: 12px;">📊数据可视化</header>
+<div class="visualization-content">
+  <div class="visualization-item">
+  <h1 >七天完成热力图</h1>
   <button type="button">六</button>  
   <button type="button">日</button>
   <button type="button">一</button>
@@ -91,15 +119,18 @@
   <button type="button">四</button> 
   <button type="button">五</button>
 </div>
-<div>
+<div class="visualization-item">
   <h1>本周进度</h1>
-  <div>
+  <div class="visualization-content-text">
     <span>暂无数据</span>
   </div>
 </div>
+</div>
   </section>
+
 <footer>
 <span>💪 坚持就是胜利 | 数据存储在本地，隐私安全</span>
 </footer>
+    </div>
   </body>
 </html>

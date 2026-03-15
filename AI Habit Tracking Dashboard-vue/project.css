@@ -1,0 +1,272 @@
+:root{
+    --primary-color: #007bff;
+    --main-color: #f5f7fa;
+    --text-color : #ffffff;
+    --bg-card: rgb(255, 255, 255);
+    --border-color: #543bf4;
+    --text-secondary: #4a4a689f;
+    --shadow-md: 0 5px 5px rgba(0, 0, 0, 0.1);
+    --border-md:rgba(0, 0, 0, 0.1);
+   }
+   *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+   }
+   .container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    
+   }
+
+
+body{
+    
+    background-color: var(--main-color);
+   }
+
+   section{
+    box-shadow:  var(--shadow-md) !important;
+    border-radius: 10px;
+    background-color: var(--text-color);
+   }
+   .head1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 5rem;
+   }
+  .title1{
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #40668e, #543bf4, #941b7e);
+    -webkit-background-clip: text;
+    background-clip: text;
+   color: rgba(255, 255, 255, 0);
+   }
+.text1{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(55, 50, 50, 0.514);
+   }
+   .theme{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+   }
+#themeToggle{
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--main-color);
+    background-color: var(--text-color);
+    border-radius: 50%;
+   }
+   #themeToggle:hover{
+    background-color: var(--border-color);
+   }
+   #themeToggle:active{
+    transform: scale(0.95);
+   }
+   #ai{
+    width: 120px;
+    height: 35px;
+    background-color: rgba(43, 62, 228, 0.737);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+   transition: transform 0.2s ease-in-out;
+
+   }
+   #ai:hover{
+    background-color: var(--border-color);
+    transform: translateY(-5px);
+    box-shadow: (0 0 5px var(--border-color));
+  }
+#ai:active{
+    transform: scale(0.95);
+  }
+#stats{
+     padding: 20px;
+     border-radius: 10px;
+    background-color: var(--text-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 5px var(--main-color);
+}
+ .stats-item{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--text-color);
+    border: 1px solid var(--border-md);
+    text-align: center;
+}
+.stats-item{
+   display: flex;
+   justify-content: row;
+   align-items: center;
+  
+   gap: 5px;
+  }
+.stats-item h2{
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--main-color);
+   border-radius: 5px;
+padding: 5px;
+   }
+
+.add-habit{
+    margin-top: 50px;
+    position: relative;
+    background-color: var(--text-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 5px var(--main-color);
+}
+
+.add-habit-content1{
+    margin-bottom: 2rem;
+    font-size: 15px;
+    font-weight: bold;
+}
+.add-habit-form{
+   display:grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 10px;
+}
+.form-item{
+    display: flex;
+    justify-content: row;
+    flex-direction: column;
+    
+}
+.form-btn{
+    display: flex; 
+    align-items: flex-end;
+    justify-content: center;
+   background-color: var(--primary-color);
+   margin-top: 20px;
+   border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+#addHabitBtn{
+ border:none;
+ background-color: var(--primary-color);
+ padding: 0px 100px;
+ color: var(--text-color);
+
+}
+
+#addHabitBtn:hover{
+    background-color: var(--border-color);
+    cursor: pointer;
+}
+.form-btn:hover{
+   background-color: var(--border-color);
+    transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--border-color);
+}
+/* 当悬停在父级元素上时，子元素也显示为可点击状态 ，颜色也改变*/
+.form-btn:hover #addHabitBtn{
+    background-color: var(--border-color);
+    cursor: pointer;
+}
+
+.my-habit{
+    padding: 2rem;
+  position: relative;
+    margin-top: 50px;
+    height: 250px;
+    border-radius: 10px;
+   background-color: var(--text-color);
+  }
+.my-habit-content1{
+ 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+   
+}
+.my-habit-btn button{
+color:#000000;
+padding: 5px 10px;
+background-color: var(--text-color);
+border: none;
+border: 1px solid var(--border-md);
+border-radius: 15px;
+}
+.my-habit-btn button:hover{
+  border-color: var(--border-color);
+    cursor: pointer;
+}
+.my-habit-content2{
+    margin-top: 2rem;
+    text-align: center;
+}
+.my-habit-content2 h6{
+    font-size: 50px;
+}
+.my-habit-content2 p.text2{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+.my-habit-content2 p.text3{
+    font-size: 12px;
+    font-weight:light;
+    color: rgba(55, 50, 50, 0.514);
+}
+#visualization{
+    margin-top: 50px;
+    padding: 2rem;
+    height: 200px;
+  
+}
+.visualization-content{
+   margin-top: 20px;
+    display: grid;
+    
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+   
+   }
+.visualization-item h1{
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-secondary);
+   
+}
+.visualization-item button{
+    margin-top: 2rem;
+    padding: 5px 10px;
+    color: #00000099;
+    transition: transform 0.2s ease-in-out;
+   }
+   .visualization-item button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+   }
+.visualization-content-text{
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    text-align: center;
+}
+  
+footer{
+    margin-top: 2rem;
+    text-align: center;
+}
