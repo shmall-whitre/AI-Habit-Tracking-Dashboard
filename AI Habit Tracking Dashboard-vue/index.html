@@ -5,20 +5,24 @@
     <link rel="stylesheet" href="project.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI习惯追踪仪表盘</title>
+    
+    
   </head>
   <body>
+    
     <div class="container">
     <div class="head1">
       <div>
      <header>
-      <h1 class="title1">🌱习惯追踪</h1>
-      <p class="text1">记录和管理您的习惯，实现更高效的生活</p>
+      <h1 class="container-title">🌱习惯追踪</h1>
+      <p class="container-text">记录和管理您的习惯，实现更高效的生活</p>
     </header>
     </div>
     <div class="theme">
     <button id="themeToggle">
-      <span class="icon">🌙</span>
-    <button   id="ai">🤖AI建议</button>
+      <span class="icon" id="icon">🌙</span>
+    </button>
+    <button   id="ai"><span class="ai-icon">🤖</span>AI建议</button>
     </div>
     </div>
 
@@ -63,11 +67,11 @@
 <form class="add-habit-form" action="" method="post">
   <div class="form-item">    
   <label for="iterm1">习惯名称:</label>
-      <input id="iterm1"placeholder="例如:每天阅读30分钟" required>
+      <input class="form-select" id="iterm1"placeholder="例如:每天阅读30分钟" required>
  </div>
   <div class="form-item">
       <label for="iterm2">习惯描述:</label>
-      <select id="iterm2" required>
+      <select class="form-select" id="iterm2" required>
       <option value="health">健康</option>
       <option value="study">学习</option>
       <option value="social">社交</option>
@@ -75,7 +79,7 @@
   </div>
   <div class="form-item">
       <label for="iterm3">频率</label>
-      <select id="iterm3" required>
+      <select class="form-select" id="iterm3" required>
       <option value="everyday">每天</option>
       <option value="everyweek">每周</option>
      </select>
@@ -132,5 +136,7 @@
 <span>💪 坚持就是胜利 | 数据存储在本地，隐私安全</span>
 </footer>
     </div>
+    <script src="project-js.js"></script>
   </body>
+  
 </html>

@@ -5,9 +5,23 @@
     --bg-card: rgb(255, 255, 255);
     --border-color: #543bf4;
     --text-secondary: #4a4a689f;
+    --text-primary: #333333;
+    --text-muted: #666666;
     --shadow-md: 0 5px 5px rgba(0, 0, 0, 0.1);
-    --border-md:rgba(0, 0, 0, 0.1);
+    --border-md:rgba(232, 229, 229, 0.728);
    }
+   [data-theme="Dark"] {
+    --primary-color: #3b82f6;
+    --main-color: #0f0f1a;
+    --text-color: #1a1a2e;
+    --bg-card: #1f1f3a;
+    --border-color: #818cf8;
+    --text-secondary: #b0b0c0;
+    --text-primary: #ffffff;
+    --text-muted: #9ca3af;
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --border-md: #08080860;
+}
    *{
     box-sizing: border-box;
     margin: 0;
@@ -19,10 +33,8 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    
    }
-
-
+  
 body{
     
     background-color: var(--main-color);
@@ -41,18 +53,58 @@ body{
     gap: 2rem;
     margin-bottom: 5rem;
    }
-  .title1{
+  .container-title{
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(90deg, #40668e, #543bf4, #941b7e);
+   animation: textchange 4s ease-in-out infinite;
     -webkit-background-clip: text;
-    background-clip: text;
-   color: rgba(255, 255, 255, 0);
+  
+  color: transparent; 
    }
-.text1{
+ @keyframes textchange
+ {
+    0%{
+        background: linear-gradient(90deg, #0561eb, #f02af0, #0561eb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 200% auto;
+        background-position: 0% center;
+    }
+    25%{
+        background: linear-gradient(90deg, #0561eb, #e762e7, #0561eb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 200% auto;
+        background-position: 50% center;
+    }
+    50%{
+        background: linear-gradient(90deg, #0561eb,#f02af0 ,#0561eb );
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 200% auto;
+        background-position: 100% center;
+    }
+    75%{
+        background: linear-gradient(90deg, #0561eb, #f02af0, #5036e0);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 200% auto;
+        background-position: 50% center;
+    }
+    100%{
+        background: linear-gradient(90deg, #5036e0, #f02af0, #0561eb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 200% auto;
+        background-position: 0% center;
+    }
+ }
+
+
+.container-text{
     font-size: 15px;
     font-weight: bold;
-    color: rgba(55, 50, 50, 0.514);
+    color: var(--text-muted);
    }
    .theme{
     display: flex;
@@ -63,8 +115,10 @@ body{
 #themeToggle{
     width: 40px;
     height: 40px;
-    border: 1px solid var(--main-color);
+    border: 1px solid var(--border-md);
     background-color: var(--text-color);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
     border-radius: 50%;
    }
    #themeToggle:hover{
@@ -85,9 +139,38 @@ body{
 
    }
    #ai:hover{
-    background-color: var(--border-color);
+    
     transform: translateY(-5px);
     box-shadow: (0 0 5px var(--border-color));
+    cursor: pointer;
+    color: transparent;
+    background-clip: text;
+    animation: aiHover 4s ease-in-out infinite;
+  }
+  
+ 
+  @keyframes aiHover{
+    0%{
+       background: linear-gradient(90deg, #0561eb, #f02af0, #0561eb);
+       background-clip: text;
+       -webkit-background-clip: text;
+       background-size: 200% auto;
+       background-position: 0% center;
+    }
+    50%{
+       background: linear-gradient(90deg, #0561eb, #f02af0, #0561eb);
+       background-clip: text;
+       -webkit-background-clip: text;
+       background-size: 200% auto;
+       background-position: 50% center;
+    }
+    100%{
+       background: linear-gradient(90deg, #5036e0, #f02af0, #0561eb);
+       background-clip: text;
+       -webkit-background-clip: text;
+       background-size: 200% auto;
+       background-position: 0% center;
+    }
   }
 #ai:active{
     transform: scale(0.95);
@@ -106,13 +189,14 @@ body{
     padding: 10px;
     border-radius: 5px;
     background-color: var(--text-color);
-    border: 1px solid var(--border-md);
+    border: 1.5px solid var(--border-md);
     text-align: center;
 }
 .stats-item{
    display: flex;
    justify-content: row;
    align-items: center;
+   backdrop-filter: blur(10px);
   
    gap: 5px;
   }
@@ -151,19 +235,36 @@ padding: 5px;
 }
 .form-btn{
     display: flex; 
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
    background-color: var(--primary-color);
    margin-top: 20px;
    border-radius: 10px;
     transition: transform 0.2s ease-in-out;
 }
+.form-select{
+    padding: 10px;
+    outline: none;
+    background-color: var(--text-color);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--border-md);
+    border-radius: 5px;
+}
+.form-select:focus{
+    border-color: var(--border-color);
+}
 
 #addHabitBtn{
- border:none;
- background-color: var(--primary-color);
- padding: 0px 100px;
- color: var(--text-color);
+border:none;
+    background-color: var(--primary-color);
+    text-align: center;
+    /* 去掉 padding: 0 100px; 或者改成较小的值 */
+    padding: 10px 20px; /* 示例：添加上下内边距让按钮好看些，左右不要太大 */
+    color: var(--text-color);
+    /* 为了让按钮完全填满父容器且文字居中，也可以加上 width: 100% */
+    width: 90%;
+    
+    white-space: nowrap; /* 防止文字换行 */
 
 }
 
@@ -200,7 +301,7 @@ padding: 5px;
    
 }
 .my-habit-btn button{
-color:#000000;
+color:var(--text-primary);
 padding: 5px 10px;
 background-color: var(--text-color);
 border: none;
@@ -221,12 +322,12 @@ border-radius: 15px;
 .my-habit-content2 p.text2{
     font-size: 15px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: var(--text-primary);
 }
 .my-habit-content2 p.text3{
     font-size: 12px;
     font-weight:light;
-    color: rgba(55, 50, 50, 0.514);
+    color: var(--text-muted);
 }
 #visualization{
     margin-top: 50px;
@@ -252,7 +353,7 @@ border-radius: 15px;
 .visualization-item button{
     margin-top: 2rem;
     padding: 5px 10px;
-    color: #00000099;
+    color: var(--text-primary);
     transition: transform 0.2s ease-in-out;
    }
    .visualization-item button:hover{
@@ -270,3 +371,4 @@ footer{
     margin-top: 2rem;
     text-align: center;
 }
+
