@@ -308,13 +308,21 @@ border: none;
 border: 1px solid var(--border-md);
 border-radius: 15px;
 }
-.my-habit-btn button:hover{
+.filter-btn:hover{
   border-color: var(--border-color);
     cursor: pointer;
+}
+.filter-btn.active/*用户点击时，按钮背景颜色改变*/
+{
+    background-color: var(--border-color);
+    color: var(--text-color);
 }
 .my-habit-content2{
     margin-top: 2rem;
     text-align: center;
+}
+.hidden{
+display: none !important;/*没卡片式去除hidden类名，有卡片的时候添加hidden类名*/
 }
 .my-habit-content2 h6{
     font-size: 50px;
@@ -353,7 +361,8 @@ border-radius: 15px;
 .visualization-item button{
     margin-top: 2rem;
     padding: 5px 10px;
-    color: var(--text-primary);
+    background-color: var(--text-muted);
+    color: var(--text-color);
     transition: transform 0.2s ease-in-out;
    }
    .visualization-item button:hover{

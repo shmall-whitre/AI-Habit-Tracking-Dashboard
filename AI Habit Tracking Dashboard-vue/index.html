@@ -64,7 +64,7 @@
   <div class="add-habit-content1">
   <header>➕添加习惯</header> 
 </div>
-<form class="add-habit-form" action="" method="post">
+<form class="add-habit-form" id="addHabitForm" action="" method="post">
   <div class="form-item">    
   <label for="iterm1">习惯名称:</label>
       <input class="form-select" id="iterm1"placeholder="例如:每天阅读30分钟" required>
@@ -84,7 +84,7 @@
       <option value="everyweek">每周</option>
      </select>
   </div>
-  <div class="form-btn">
+  <div class="form-btn" id="form-btn">
   <button type="submit" id="addHabitBtn">添加习惯</button>
 </div>  
   </form>
@@ -94,10 +94,10 @@
  <div class="my-habit-content1">
   <h3>🗒️我的习惯</h3>
   <div  class="my-habit-btn">
-  <button id="filterAll" data-filter="all">所有习惯</button>
-  <button id="filterHealth" data-filter="health">健康</button>
-  <button id="filterStudy" data-filter="study">学习</button>
-  <button id="filterSocial" data-filter="social">社交</button>
+  <button class="filter-btn active" data-filter="all">所有习惯</button>
+  <button class="filter-btn" data-filter="health">健康</button>
+  <button class="filter-btn" data-filter="study">学习</button>
+  <button class="filter-btn" data-filter="social">社交</button>
   </div>
 </div>
 <div id="my-habit-list">
