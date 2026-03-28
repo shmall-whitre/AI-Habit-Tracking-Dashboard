@@ -1,12 +1,5 @@
-<script setup>
+<script src=stores\project-js.js setup></script>
 
-
-
-
-
-
-
-</script>
 
 <template>
  <div class="container">
