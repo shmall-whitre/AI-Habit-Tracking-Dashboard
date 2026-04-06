@@ -1,3 +1,4 @@
+
 // 保存数据到 localStorage
 const Storageinist = {
     key: {
@@ -11,6 +12,7 @@ const Storageinist = {
     setthmem(thmem) {
         localStorage.setItem(this.key.thmem, thmem);
     },
+
     // 获取习惯
     gethabit() {
         const data = localStorage.getItem(this.key.habit);
@@ -19,8 +21,8 @@ const Storageinist = {
     sethabit(habit) {
         localStorage.setItem(this.key.habit, JSON.stringify(habit));
     },
-    addhabit(habit) // 添加习惯
-    {
+    // 添加习惯
+    addhabit(habit) {
         const habits = Storageinist.gethabit(); // 获取当前的习惯
         habit.id = Date.now().toString(); // 生成唯一id
         habit.creattime = new Date().toLocaleString(); // 获取当前时间
@@ -66,6 +68,7 @@ const Storageinist = {
             }
             return false;
         }
+        return false;
     },
     // 获取今日日期
     gotostring() {
@@ -84,16 +87,10 @@ const Storageinist = {
     },
     // 计算完成习惯的天数(日期要连续)
     countcompleteddays(compions) {
+        if (!compions || compions.length === 0) {
+            return 0;
+        }
         const sorted = [...compions].sort().reverse(); // sort() 对数组元素进行排序，默认按字符串 Unicode 码点排序
-        if (compions.length === 0 || !compions) {
-            return 0;
-        }
-        const today = new Date();
-        const yearsterday = new Date(today);
-        yearsterday.setDate(yearsterday.getDate() - 1);
-        if (sorted[0] === yearsterday.toISOString().split('T')[0] || sorted[0] === today.toISOString().split('T')[0]) {
-            return 0;
-        }
         let count = 1;
         for (let i = 0; i < sorted.length - 1; i++) {
             const current = new Date(sorted[i]);
@@ -155,6 +152,7 @@ const complete = {
         this.randerhabit();
         document.getElementById("addHabitForm").reset(); // 清空表单
         this.shownotication("✔️YES,习惯添加成功");
+        this.updateProgressRing();
     },
 
     // 弹窗功能
@@ -198,6 +196,7 @@ const complete = {
             Storageinist.dealtehabit(id);
             this.shownotication("已删除习惯");
             this.randerhabit();
+            this.updateProgressRing();
         }
     },
 
@@ -222,8 +221,9 @@ const complete = {
                 <div class="habit-card ${isCompleted ? 'completed' : ''}" 
                      data-id="${habit.id}" data-category="${habit.category}">
                     <div class="habit-card-header">
-                        <h3 class="habit-card-title"></h3>
+                        <h3 class="habit-card-title">${habit.habitname}</h3>
                         <span class="habit-card-category ${habit.category}">
+                            ${habit.category === 'health' ? '健康' : habit.category === 'study' ? '学习' : '社交'}
                         </span>
                     </div>
                     <div class="habit-card-stats">
@@ -247,6 +247,7 @@ const complete = {
                 </div>
             `;
         }).join('');
+       
     },
 
     // 让其处于完成状态
@@ -269,11 +270,15 @@ const complete = {
             btn.classList.add('completed');
             btn.textContent = "✓ 已完成";
         }
+        this.randerhabit();
+        this.updateProgressRing();
+        this.SETcomplete();
     },
 
     handlethings(e) {
         const c = e.target.closest('.btn-secondary');
         const card = e.target.closest('.habit-card');
+        if (!card) return;
         const id = card.dataset.id;
         if (c) {
             this.dealteyouhabit(id);
@@ -282,19 +287,118 @@ const complete = {
         if (e.target.closest('.btn-complete')) {
             this.completehabit(id);
         }
+        this.SETcomplete();
     },
-
+    Updatedatas(){
+        const habit=Storageinist.gethabit();
+        
+       
+    },
+    // 更新进度环
+    updateProgressRing() {
+        const habits = Storageinist.gethabit();
+        const container = document.querySelector('.progress-ring-container');
+        
+        if (habits.length === 0) {
+            // 显示暂无数据
+            if (container) {
+                container.classList.add('no-data');
+            }
+            return;
+        }
+        
+        // 显示进度环
+        if (container) {
+            container.classList.remove('no-data');
+        }
+        
+        const today = Storageinist.gotostring();
+        const completedHabits = habits.filter(habit => habit.compions.includes(today)).length;
+        const progress = Math.round((completedHabits / habits.length) * 100);
+        this.setProgress(progress);
+    },
+    
+    // 设置进度环的值
+    setProgress(percent) {
+        const circle = document.querySelector('.progress-ring-progress');
+        const text = document.querySelector('.progress-ring-text');
+        if (!circle || !text) return;
+        
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        const offset = circumference - percent / 100 * circumference;
+        circle.style.strokeDashoffset = offset;
+        text.textContent = `${percent}%`;
+    },
+    getday(datadays) {
+        let day = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+        return day[datadays.getDay()];
+    },
+    /*渲染七天完成热力图<*/
+    SETcomplete() {
+        const habit = Storageinist.gethabit();
+        const button = document.querySelectorAll('.button');
+        button.forEach(bu => bu.classList.remove('active'));
+        let setmap = new Set();
+        
+        habit.forEach(DATA => {
+            DATA.compions.forEach(time => {
+                const datatime = new Date(time);
+                const map = this.getday(datatime);
+                setmap.add(map);
+            });
+        });
+        
+        button.forEach(button => {
+            if (setmap.has(button.value)) {
+                button.classList.add('active');
+            }
+        });
+    },
+//初始化
     init() {
         this.randerhabit();
+        this.Updatedatas();
         this.bindevent();
+        this.SETcomplete();
+        this.updateProgressRing();
     },
 };
+window.complete=complete;
+const post = {
+    async post() {
+        const data = Storageinist.gethabit();
+        try {
+            let response = await fetch('', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            const result = await response.text();
+            alert("提交成功" + result);
+            return result;
+        } catch (err) {
+            alert("提交失败" + err.message);
+        }
+    }
+};
+
 
 // 启动各个模块
 document.addEventListener("DOMContentLoaded", function() {
     thmemlogin.init();
     complete.init();
 });
+
+
+
 
 // 主题切换模块
 const thmemlogin = {

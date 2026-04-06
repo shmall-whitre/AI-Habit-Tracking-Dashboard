@@ -60,14 +60,14 @@
           <div class="add-habit-content1">
             <header>➕添加习惯</header>
           </div>
-          <form class="add-habit-form" id="addHabitForm" action="" method="post">
+          <form class="add-habit-form" id="addHabitForm" >
             <div class="form-item">
               <label for="iterm1">习惯名称:</label>
-              <input class="form-select" id="iterm1" placeholder="例如:每天阅读30分钟" required autocomplete="off">
+              <input  name="habitName" class="form-select" id="iterm1" placeholder="例如:每天阅读30分钟" required autocomplete="off">
             </div>
             <div class="form-item">
               <label for="iterm2">习惯描述:</label>
-              <select class="form-select" id="iterm2" required>
+              <select name="category" class="form-select" id="iterm2" required>
                 <option value="health">健康</option>
                 <option value="study">学习</option>
                 <option value="social">社交</option>
@@ -75,7 +75,7 @@
             </div>
             <div class="form-item">
               <label for="iterm3">频率</label>
-              <select class="form-select" id="iterm3" required>
+              <select  name="frequency" class="form-select" id="iterm3" required>
                 <option value="everyday">每天</option>
                 <option value="everyweek">每周</option>
               </select>
@@ -112,18 +112,25 @@
         <div class="visualization-content">
           <div class="visualization-item">
             <h1>七天完成热力图</h1>
-            <button type="button">六</button>
-            <button type="button">日</button>
-            <button type="button">一</button>
-            <button type="button">二</button>
-            <button type="button">三</button>
-            <button type="button">四</button>
-            <button type="button">五</button>
+            <button class="button" type="button" value="SU">日</button>
+            <button class="button"type="button"value="MO">一</button>
+            <button  class="button"  type="button "value="TU">二</button>
+            <button  class="button" type="button"value="WE">三</button>
+            <button  class="button" type="button" value="TH">四</button>
+            <button  class="button" type="button"value="FR">五</button>
+            <button  class="button" type="button" value="SA">六</button>
           </div>
           <div class="visualization-item">
             <h1>本周进度</h1>
-            <div class="visualization-content-text">
-              <span>暂无数据</span>
+            <div class="visualization-content-contanier">
+              <div class="progress-ring-container">
+                <svg class="progress-ring" width="100" height="100">
+                  <circle class="progress-ring-background" cx="50" cy="50" r="40" />
+                  <circle class="progress-ring-progress" cx="50" cy="50" r="40" />
+                  <text class="progress-ring-text" x="50" y="55" text-anchor="middle" font-size="16" font-weight="bold">0%</text>
+                </svg>
+                <div class="no-data-text">暂无数据</div>
+              </div>
             </div>
           </div>
         </div>

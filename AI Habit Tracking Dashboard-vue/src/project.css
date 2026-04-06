@@ -294,7 +294,7 @@ section {
     padding: 2rem;
     position: relative;
     margin-top: 50px;
-    height: 250px;
+    
     border-radius: 10px;
     background-color: var(--text-color);
 }
@@ -312,6 +312,7 @@ section {
     background-color: var(--text-color);
     border: 1px solid var(--border-md);
     border-radius: 15px;
+    
 }
 
 .filter-btn:hover {
@@ -329,8 +330,124 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
+    overflow:scroll;
+}
+.habit-card {
+    border: 1px solid var(--border-md);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: var(--text-color);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+.habit-card-streak{
+    display: flex;
+    justify-content:space-between;
+}
+.habit-card:hover {
+    
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
+.habit-card.completed {
+    border-color: var(--border-color);
+    background-color: rgba(84, 59, 244, 0.05);
+}
+
+.habit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.habit-card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.habit-card-category {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.habit-card-category.health {
+    background-color: rgba(72, 187, 120, 0.2);
+    color: #48bb78;
+}
+
+.habit-card-category.study {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.habit-card-category.social {
+    background-color: rgba(236, 72, 153, 0.2);
+    color: #ec4899;
+}
+
+.habit-card-stats {
+    margin-bottom: 15px;
+}
+
+.habit-card-streak {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+   
+}
+
+.habit-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-complete {
+    background-color: #30c14d;
+    color: white;
+    flex: 1;
+}
+
+.btn-complete:hover {
+    background-color: #016816;
+    transform: translateY(-2px);
+}
+
+.btn-complete.completed {
+    background-color: #989b9a;
+    color: white;
+}
+
+.btn-complete.completed:hover {
+    background-color: #6c757d;
+}
+
+.btn-secondary {
+    background-color: #f87171;
+    color: white;
+    padding: 8px 12px;
+}
+
+.btn-secondary:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+}
 .my-habit-content2 {
     margin-top: 2rem;
     text-align: center;
@@ -359,7 +476,7 @@ section {
 #visualization {
     margin-top: 50px;
     padding: 2rem;
-    height: 200px;
+    
 }
 
 .visualization-content {
@@ -370,30 +487,125 @@ section {
     gap: 10px;
 }
 
+.visualization-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 150px;
+}
+
 .visualization-item h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
     font-size: 12px;
     font-weight: bold;
     color: var(--text-secondary);
 }
 
+.visualization-item:first-child {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.visualization-item:first-child h1 {
+    position: static;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+
+
 .visualization-item button {
-    margin-top: 2rem;
+    margin: 5px;
     padding: 5px 10px;
+    border: none;
     background-color: var(--text-muted);
     color: var(--text-color);
     transition: transform 0.2s ease-in-out;
 }
 
+
 .visualization-item button:hover {
     transform: scale(1.2);
     cursor: pointer;
 }
+.button.active{
+background-color: #30c14d;
+transform: scale(1.2);
+}
+.visualization-content-contanier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+}
+.visualization-content-text.hidden{
+   display: none !important;
+}
 
-.visualization-content-text {
-    font-size: 12px;
+.progress-ring-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.progress-ring-background {
+    fill: none;
+    stroke: var(--border-md);
+    stroke-width: 6;
+}
+
+.progress-ring-progress {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 251.33; /* 2 * π * 40 */
+    stroke-dashoffset: 251.33;
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-ring-text {
+    transform: rotate(90deg);
+    fill: var(--text-primary);
+    font-size: 16px;
+}
+
+.no-data-text {
+    position: absolute;
+    font-size: 14px;
     font-weight: bold;
     color: var(--text-secondary);
-    text-align: center;
+    display: none;
+    transform: none;
+}
+
+.progress-ring-container.no-data .no-data-text {
+    display: block;
+}
+
+.progress-ring-container.no-data .progress-ring {
+    display: none;
 }
 
 footer {
