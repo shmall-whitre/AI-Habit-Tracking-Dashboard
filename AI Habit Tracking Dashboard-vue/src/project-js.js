@@ -1,4 +1,3 @@
-
 // 保存数据到 localStorage
 const Storageinist = {
     key: {
@@ -109,9 +108,7 @@ const Storageinist = {
         localStorage.removeItem(this.key.thmem);
     }
 };
-
 window.Storageinist = Storageinist; // 把Storageinist对象挂载到window对象上，方便在其他模块中调用
-
 const complete = {
     // 绑定事件
     bindevent() {
@@ -289,11 +286,7 @@ const complete = {
         }
         this.SETcomplete();
     },
-    Updatedatas(){
-        const habit=Storageinist.gethabit();
-        
-       
-    },
+   
     // 更新进度环
     updateProgressRing() {
         const habits = Storageinist.gethabit();
@@ -317,7 +310,7 @@ const complete = {
         const progress = Math.round((completedHabits / habits.length) * 100);
         this.setProgress(progress);
     },
-    
+   
     // 设置进度环的值
     setProgress(percent) {
         const circle = document.querySelector('.progress-ring-progress');
@@ -360,46 +353,110 @@ const complete = {
 //初始化
     init() {
         this.randerhabit();
-        this.Updatedatas();
         this.bindevent();
         this.SETcomplete();
         this.updateProgressRing();
+
     },
 };
 window.complete=complete;
-const post = {
-    async post() {
-        const data = Storageinist.gethabit();
-        try {
-            let response = await fetch('', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            const result = await response.text();
-            alert("提交成功" + result);
-            return result;
-        } catch (err) {
-            alert("提交失败" + err.message);
+//传递数据，后端以流返回
+const Post={
+ async post(url){
+    const data=Storageinist.gethabit();
+    const controller=new AbortController();
+    const dialogtext=document.querySelector('.ai-text');
+    if(!data){
+        console.log("数据为空");
+        return;
+    }
+    console.log("正在提交");
+    dialogtext.textContent="🤖"+"[思考中]......."
+    dialogtext.classList.add('typing');
+    try{ 
+        const timeout=setTimeout(()=>{
+            controller.abort();
+            console.log("提交超时");  
+             dialogtext.classList.remove('typing');
+            dialogtext.textContent="🤖"+"提交超时......";
+         
+            
+        },5000)
+        const response= await fetch(url,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(data[0]),
+            signal:controller.signal
+        })
+        clearTimeout(timeout);
+        if(!response.ok||!response.body){
+            const s=response.status;
+            dialogtext.textContent=s;
+            throw new Error(`状态码：${response.status}`);
         }
+       
+        const reader=response.body.getReader();
+        const decoder=new TextDecoder('UTF-8');
+        let text="🤖";
+        dialogtext.textContent="";
+        while(true){
+            const {done,value}= await reader.read();
+            if(done){
+                dialogtext.classList.remove('typing');
+                text+=decoder.decode();
+                break;
+            }
+            const chuck=decoder.decode(value,{stream:true});
+            text+=chuck;
+            dialogtext.textContent=text;
+        }
+        return text;
+     }catch(err){
+        console.log("提交失败"+err.message);
+     }
     }
 };
+window.Post = Post;
+//做一个弹窗，用于显示ai的消息
+const but = {
+    add() {
+        const btn = document.querySelector('.ai');
+        if (!btn) return;
+      const elm=document.createElement('dialog');
+      elm.className='aitext';
+     elm.innerHTML=`
+     <button class="ai-btn" >❌</button>
+     <div class="ai-text"></div>`
+     document.body.appendChild(elm);
+    onclose();
+    btn.addEventListener("click", () => {
+            const dialog=document.querySelector('.aitext');
+           dialog.showModal(); 
+           Post.post('http://10.141.238.128:8000/AI');
+            
+        });
+       
 
-
+    }
+};
+function onclose(){
+  const dialog=document.querySelector('.aitext');
+  const btn=document.querySelector('.ai-btn');
+  if(dialog && btn){
+  btn.addEventListener('click',()=>{
+     dialog.close();
+  })
+}
+}
 // 启动各个模块
 document.addEventListener("DOMContentLoaded", function() {
     thmemlogin.init();
     complete.init();
+    but.add();
 });
-
-
-
-
 // 主题切换模块
 const thmemlogin = {
     changetext() {
@@ -423,3 +480,4 @@ const thmemlogin = {
         });
     }
 };
+

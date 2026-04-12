@@ -10,7 +10,6 @@
     --shadow-md: 0 5px 5px rgba(0, 0, 0, 0.1);
     --border-md: rgba(232, 229, 229, 0.728);
 }
-
 [data-theme="Dark"] {
     --primary-color: #3b82f6;
     --main-color: #0f0f1a;
@@ -23,13 +22,11 @@
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
     --border-md: #08080860;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -37,17 +34,14 @@
     display: flex;
     flex-direction: column;
 }
-
 body {
     background-color: var(--main-color);
 }
-
 section {
     box-shadow: var(--shadow-md) !important;
     border-radius: 10px;
     background-color: var(--text-color);
 }
-
 .head1 {
     display: flex;
     justify-content: space-between;
@@ -56,7 +50,6 @@ section {
     gap: 2rem;
     margin-bottom: 5rem;
 }
-
 .container-title {
     font-size: 2rem;
     font-weight: bold;
@@ -64,7 +57,6 @@ section {
     -webkit-background-clip: text;
     color: transparent;
 }
-
 @keyframes textchange {
     0% {
         background: linear-gradient(90deg, #0561eb, #f02af0, #0561eb);
@@ -102,20 +94,17 @@ section {
         background-position: 0% center;
     }
 }
-
 .container-text {
     font-size: 15px;
     font-weight: bold;
     color: var(--text-muted);
 }
-
 .theme {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
-
 #themeToggle {
     width: 40px;
     height: 40px;
@@ -125,15 +114,12 @@ section {
     backdrop-filter: blur(10px);
     border-radius: 50%;
 }
-
 #themeToggle:hover {
     background-color: var(--border-color);
 }
-
 #themeToggle:active {
     transform: scale(0.95);
 }
-
 #ai {
     width: 120px;
     height: 35px;
@@ -144,7 +130,6 @@ section {
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
-
 #ai:hover {
     transform: translateY(-5px);
     box-shadow: (0 0 5px var(--border-color));
@@ -153,7 +138,6 @@ section {
     background-clip: text;
     animation: aiHover 4s ease-in-out infinite;
 }
-
 @keyframes aiHover {
     0% {
         background: linear-gradient(90deg, #0561eb, #f02af0, #0561eb);
@@ -177,11 +161,9 @@ section {
         background-position: 0% center;
     }
 }
-
 #ai:active {
     transform: scale(0.95);
 }
-
 #stats {
     padding: 20px;
     border-radius: 10px;
@@ -192,7 +174,6 @@ section {
     gap: 10px;
     box-shadow: 0 5px 5px var(--main-color);
 }
-
 .stats-item {
     padding: 10px;
     border-radius: 5px;
@@ -204,7 +185,6 @@ section {
     gap: 5px;
     backdrop-filter: blur(10px);
 }
-
 .stats-item h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -212,7 +192,6 @@ section {
     border-radius: 5px;
     padding: 5px;
 }
-
 .add-habit {
     margin-top: 50px;
     position: relative;
@@ -221,24 +200,20 @@ section {
     padding: 20px;
     box-shadow: 0 5px 5px var(--main-color);
 }
-
 .add-habit-content1 {
     margin-bottom: 2rem;
     font-size: 15px;
     font-weight: bold;
 }
-
 .add-habit-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
 }
-
 .form-item {
     display: flex;
     flex-direction: column;
 }
-
 .form-btn {
     display: flex;
     align-items: center;
@@ -248,7 +223,6 @@ section {
     border-radius: 10px;
     transition: transform 0.2s ease-in-out;
 }
-
 .form-select {
     padding: 10px;
     outline: none;
@@ -257,11 +231,9 @@ section {
     border: 2px solid var(--border-md);
     border-radius: 5px;
 }
-
 .form-select:focus {
     border-color: var(--border-color);
 }
-
 #addHabitBtn {
     border: none;
     background-color: var(--primary-color);
@@ -271,25 +243,21 @@ section {
     width: 90%;
     white-space: nowrap;
 }
-
 #addHabitBtn:hover {
     background-color: var(--border-color);
     cursor: pointer;
 }
-
 .form-btn:hover {
     background-color: var(--border-color);
     transform: translateY(-5px);
     cursor: pointer;
     box-shadow: 0 0 5px var(--border-color);
 }
-
 /* 当悬停在父级元素上时，子元素也显示为可点击状态 ，颜色也改变 */
 .form-btn:hover #addHabitBtn {
     background-color: var(--border-color);
     cursor: pointer;
 }
-
 .my-habit {
     padding: 2rem;
     position: relative;
@@ -298,14 +266,12 @@ section {
     border-radius: 10px;
     background-color: var(--text-color);
 }
-
 .my-habit-content1 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
 }
-
 .my-habit-btn button {
     color: var(--text-primary);
     padding: 5px 10px;
@@ -314,18 +280,15 @@ section {
     border-radius: 15px;
     
 }
-
 .filter-btn:hover {
     border-color: var(--border-color);
     cursor: pointer;
 }
-
 .filter-btn.active {
     /* 用户点击时，按钮背景颜色改变 */
     background-color: var(--border-color);
     color: var(--text-color);
 }
-
 .my-habit-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -348,52 +311,43 @@ section {
     
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
-
 .habit-card.completed {
     border-color: var(--border-color);
     background-color: rgba(84, 59, 244, 0.05);
 }
-
 .habit-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
-
 .habit-card-title {
     font-size: 16px;
     font-weight: bold;
     color: var(--text-primary);
     margin: 0;
 }
-
 .habit-card-category {
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 12px;
     font-weight: 500;
 }
-
 .habit-card-category.health {
     background-color: rgba(72, 187, 120, 0.2);
     color: #48bb78;
 }
-
 .habit-card-category.study {
     background-color: rgba(59, 130, 246, 0.2);
     color: #3b82f6;
 }
-
 .habit-card-category.social {
     background-color: rgba(236, 72, 153, 0.2);
     color: #ec4899;
 }
-
 .habit-card-stats {
     margin-bottom: 15px;
 }
-
 .habit-card-streak {
     display: flex;
     align-items: center;
@@ -402,12 +356,10 @@ section {
     font-size: 14px;
    
 }
-
 .habit-card-actions {
     display: flex;
     gap: 10px;
 }
-
 .btn {
     padding: 8px 16px;
     border: none;
@@ -417,33 +369,27 @@ section {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .btn-complete {
     background-color: #30c14d;
     color: white;
     flex: 1;
 }
-
 .btn-complete:hover {
     background-color: #016816;
     transform: translateY(-2px);
 }
-
 .btn-complete.completed {
     background-color: #989b9a;
     color: white;
 }
-
 .btn-complete.completed:hover {
     background-color: #6c757d;
 }
-
 .btn-secondary {
     background-color: #f87171;
     color: white;
     padding: 8px 12px;
 }
-
 .btn-secondary:hover {
     background-color: #dc2626;
     transform: translateY(-2px);
@@ -452,33 +398,27 @@ section {
     margin-top: 2rem;
     text-align: center;
 }
-
 .hidden {
     display: none !important;/* 没卡片式去除hidden类名，有卡片的时候添加hidden类名 */
 }
-
 .my-habit-content2 h6 {
     font-size: 50px;
 }
-
 .my-habit-content2 p.text2 {
     font-size: 15px;
     font-weight: bold;
     color: var(--text-primary);
 }
-
 .my-habit-content2 p.text3 {
     font-size: 12px;
     font-weight: light;
     color: var(--text-muted);
 }
-
 #visualization {
     margin-top: 50px;
     padding: 2rem;
     
 }
-
 .visualization-content {
     margin-top: 20px;
     display: grid;
@@ -486,7 +426,6 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
 }
-
 .visualization-item {
     position: relative;
     display: flex;
@@ -496,7 +435,6 @@ section {
     text-align: center;
     min-height: 150px;
 }
-
 .visualization-item h1 {
     position: absolute;
     top: 0;
@@ -508,13 +446,11 @@ section {
     font-weight: bold;
     color: var(--text-secondary);
 }
-
 .visualization-item:first-child {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
 }
-
 .visualization-item:first-child h1 {
     position: static;
     width: 100%;
@@ -522,9 +458,6 @@ section {
     margin-bottom: 10px;
     padding: 0;
 }
-
-
-
 .visualization-item button {
     margin: 5px;
     padding: 5px 10px;
@@ -533,8 +466,6 @@ section {
     color: var(--text-color);
     transition: transform 0.2s ease-in-out;
 }
-
-
 .visualization-item button:hover {
     transform: scale(1.2);
     cursor: pointer;
@@ -554,7 +485,6 @@ transform: scale(1.2);
 .visualization-content-text.hidden{
    display: none !important;
 }
-
 .progress-ring-container {
     display: flex;
     justify-content: center;
@@ -563,18 +493,15 @@ transform: scale(1.2);
     height: 100px;
     position: relative;
 }
-
 .progress-ring {
     transform: rotate(-90deg);
     transform-origin: center;
 }
-
 .progress-ring-background {
     fill: none;
     stroke: var(--border-md);
     stroke-width: 6;
 }
-
 .progress-ring-progress {
     fill: none;
     stroke: var(--border-color);
@@ -584,13 +511,11 @@ transform: scale(1.2);
     stroke-dashoffset: 251.33;
     transition: stroke-dashoffset 1s ease-in-out;
 }
-
 .progress-ring-text {
     transform: rotate(90deg);
     fill: var(--text-primary);
     font-size: 16px;
 }
-
 .no-data-text {
     position: absolute;
     font-size: 14px;
@@ -599,17 +524,49 @@ transform: scale(1.2);
     display: none;
     transform: none;
 }
-
 .progress-ring-container.no-data .no-data-text {
     display: block;
 }
-
 .progress-ring-container.no-data .progress-ring {
     display: none;
 }
-
 footer {
     margin-top: 2rem;
     text-align: center;
 }
-
+.aitext{
+    position:absolute;
+    top: 20px;
+    padding: 20px;
+    left:12px;
+    z-index: 1000;
+    max-height:500px;
+    min-height: 300px;
+    width:500px;
+    background-color: var(--text-color);
+    border-radius:5px;
+    border: 1px solid var(--border-md);
+    line-height: 1.6;
+    white-space:pre-wrap;
+    word-break: break-all;
+}
+.aitext::backdrop{
+    background-color: rgba(184, 184, 184, 0.034);
+    backdrop-filter:blur(4px);
+}
+.ai-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+/* 光标样式 */
+/* 闪烁光标，用伪元素实现，不占HTML位置 */
+.typing::after {
+  content: "|";
+  opacity: 1;
+  animation: blink 1s infinite step-end;
+  margin-left: 3px;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}

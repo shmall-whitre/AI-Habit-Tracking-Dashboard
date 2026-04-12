@@ -118,7 +118,7 @@ function clearForm() {
 
 // 登录表单处理
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('form').addEventListener('submit', function(event) {
+    document.querySelector('form').addEventListener('submit', async function(event) {
         event.preventDefault();
         const formTitle = document.querySelector('.form-section h2').textContent;
         const username = document.getElementById('username').value;
@@ -131,16 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("请填写用户名和密码");
                 return;
             }
+           const text=await Post.post();
+           const result=JSON.stringify(text); 
             
-            // 简单的登录验证（实际项目中应与后端交互）
-            // 这里只是模拟登录成功，实际项目中应该发送请求到后端验证
-            if (username.length >= 3 && password.length >= 6) {
-                // 登录成功，跳转到主页面
-                window.location.replace("index.html");
-            } else {
-                // 显示错误提示
-                alert("用户名或密码错误");
-            }
+           
         } else {
             // 注册逻辑
             if (!username || !email || !password) {
@@ -191,3 +185,4 @@ const Post={
         }
   }
 };
+window.Post=Post;
