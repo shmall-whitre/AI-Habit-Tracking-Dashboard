@@ -185,6 +185,7 @@ const complete = {
             btn.classList.toggle('active', btn.dataset.filter === filter);
         });
         this.randerhabit(filter);
+       
     },
 
     // 删除习惯
@@ -194,6 +195,7 @@ const complete = {
             this.shownotication("已删除习惯");
             this.randerhabit();
             this.updateProgressRing();
+            this.SETcomplete() 
         }
     },
 
@@ -348,6 +350,9 @@ const complete = {
             if (setmap.has(button.value)) {
                 button.classList.add('active');
             }
+            else{
+                button.classList.remove('active');
+            }
         });
     },
 //初始化
@@ -371,14 +376,14 @@ const Post={
         return;
     }
     console.log("正在提交");
-    dialogtext.textContent="🤖"+"[思考中]......."
+    dialogtext.textContent="豆包："+"[思考中]......."
     dialogtext.classList.add('typing');
     try{ 
         const timeout=setTimeout(()=>{
             controller.abort();
             console.log("提交超时");  
              dialogtext.classList.remove('typing');
-            dialogtext.textContent="🤖"+"提交超时......";
+            dialogtext.textContent="豆包："+"提交超时......";
          
             
         },5000)
@@ -400,7 +405,7 @@ const Post={
        
         const reader=response.body.getReader();
         const decoder=new TextDecoder('UTF-8');
-        let text="🤖";
+        let text="豆包：";
         dialogtext.textContent="";
         while(true){
             const {done,value}= await reader.read();
